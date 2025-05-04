@@ -30,6 +30,11 @@ export const getMoviesSearch = async ({ s, ...query }: GetMoviesQuery) => {
   return response as GetMoviesResponse;
 };
 
+export const getFavoriteMovies = async (ids: string[]) => {
+  const response = Promise.all(ids.map((id) => fetchWithApiKey({ i: id })));
+  return response;
+};
+
 export const getMovieById = async (id: string, query: GetMovieQuery = {}) => {
   const response = await fetchWithApiKey({ i: id, ...query });
   return response as GetMovieResponse;

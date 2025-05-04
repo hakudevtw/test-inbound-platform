@@ -13,6 +13,12 @@ const MENU_ITEMS = [
     icon: '🎬',
   },
   {
+    key: 'favorites',
+    path: '/favorites',
+    label: 'FAVORITES',
+    icon: '⭐',
+  },
+  {
     key: 'readme',
     path: '/readme',
     label: 'README',

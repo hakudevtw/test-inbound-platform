@@ -5,7 +5,6 @@ import { keepPreviousData } from '@tanstack/react-query';
 
 export function useQueryMovies() {
   const search = useSearchStore.use.search();
-  console.log(search);
 
   return useQuery({
     queryKey: ['movies', search.s, search.page, search.type, search.y],
