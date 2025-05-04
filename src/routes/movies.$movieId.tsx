@@ -1,21 +1,27 @@
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, notFound } from '@tanstack/react-router';
 import { Row, Col, Typography, Descriptions } from 'antd';
 import { getMovieById } from '@/services/omdb';
 import { isAvailable } from '@/lib/utils';
 import ImageWithFallback from '@/components/image-with-fallback';
 
-// TODO: still playing around with preloading
 const movieQueryOptions = (movieId: string) =>
   queryOptions({
     queryKey: ['movie', movieId],
-    queryFn: () => getMovieById(movieId),
+    queryFn: async () => {
+      const result = await getMovieById(movieId);
+      if (result.Response === 'False') throw notFound();
+      return result;
+    },
   });
 
 export const Route = createFileRoute('/movies/$movieId')({
   // @ts-expect-error declared in main.tsx
   loader: ({ context: { queryClient }, params: { movieId } }) => {
     return queryClient.ensureQueryData(movieQueryOptions(movieId));
+  },
+  notFoundComponent: () => {
+    return <p>Movie not found</p>;
   },
   component: MovieDetail,
 });
