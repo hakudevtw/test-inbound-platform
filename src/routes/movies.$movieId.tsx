@@ -4,6 +4,7 @@ import { Row, Col, Typography, Descriptions, Empty } from 'antd';
 import { getMovieById } from '@/services/omdb';
 import { isAvailable } from '@/lib/utils';
 import ImageWithFallback from '@/components/image-with-fallback';
+import FavoriteButton from '@/components/favorite-button';
 
 const movieQueryOptions = (movieId: string) =>
   queryOptions({
@@ -45,9 +46,13 @@ function MovieDetail() {
         </Col>
 
         <Col xs={24} md={16}>
-          <Typography.Title level={2}>
-            {movie.Title} ({movie.Year})
-          </Typography.Title>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+            <Typography.Title level={2} style={{ margin: 0 }}>
+              {movie.Title} ({movie.Year})
+            </Typography.Title>
+
+            <FavoriteButton movieId={movie.imdbID} />
+          </div>
           <Typography.Paragraph type="secondary">{movie.Genre}</Typography.Paragraph>
           <Typography.Paragraph>{movie.Plot}</Typography.Paragraph>
 
