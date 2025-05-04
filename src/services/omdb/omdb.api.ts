@@ -30,7 +30,7 @@ export const getMoviesSearch = async ({ s, ...query }: GetMoviesQuery) => {
   return response as GetMoviesResponse;
 };
 
-export const getMovieById = async (id: string, query: GetMovieQuery) => {
+export const getMovieById = async (id: string, query: GetMovieQuery = {}) => {
   const response = await fetchWithApiKey({ i: id, ...query });
   return response as GetMovieResponse;
 };
