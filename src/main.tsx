@@ -9,6 +9,7 @@ import './index.css';
 const queryClient = new QueryClient();
 const router = createRouter({
   routeTree,
+  basepath: '/test-inbound-platform/',
   context: { queryClient },
   defaultPreload: 'intent',
   defaultPreloadStaleTime: 0,
