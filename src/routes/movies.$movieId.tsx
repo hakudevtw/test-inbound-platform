@@ -41,7 +41,6 @@ function MovieDetail() {
             alt={movie.Title}
             width="100%"
             style={{ borderRadius: 8 }}
-            placeholder
           />
         </Col>
 
@@ -52,7 +51,14 @@ function MovieDetail() {
           <Typography.Paragraph type="secondary">{movie.Genre}</Typography.Paragraph>
           <Typography.Paragraph>{movie.Plot}</Typography.Paragraph>
 
-          <Descriptions column={1} bordered size="small" labelStyle={{ width: '150px' }}>
+          <Descriptions
+            column={1}
+            bordered
+            size="small"
+            styles={{
+              label: { width: '150px' },
+            }}
+          >
             <Descriptions.Item label="Rated">{movie.Rated}</Descriptions.Item>
             <Descriptions.Item label="Released">{movie.Released}</Descriptions.Item>
             <Descriptions.Item label="Runtime">{movie.Runtime}</Descriptions.Item>
