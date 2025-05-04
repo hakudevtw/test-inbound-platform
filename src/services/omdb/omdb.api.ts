@@ -25,8 +25,8 @@ export const fetchWithApiKey = async <T>(query: T, options?: RequestInit) => {
   return response.json();
 };
 
-export const getMoviesSearch = async (query: GetMoviesQuery) => {
-  const response = await fetchWithApiKey(query);
+export const getMoviesSearch = async ({ s, ...query }: GetMoviesQuery) => {
+  const response = await fetchWithApiKey({ s: s.trim(), ...query });
   return response as GetMoviesResponse;
 };
 
