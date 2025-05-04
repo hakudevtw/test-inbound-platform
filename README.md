@@ -1,8 +1,8 @@
-# 🎬 Movie App
+# Movie App
 
 A movie-based application that consumes the [OMDb API](https://www.omdbapi.com/).
 
-## ✅ Requirements
+## Requirements
 
 - Set up a React project using **Vite** with **TypeScript**.
 - Use **Ant Design** for UI components.
@@ -14,14 +14,14 @@ A movie-based application that consumes the [OMDb API](https://www.omdbapi.com/)
 - Implement **search by title** with debounce.
 - Ensure **responsiveness** across devices.
 
-## 💡 Bonus
+## Bonus
 
 - Clean and reusable **component structure**.
 - Show **loading indicators** when fetching.
 - Follow **best practices** (error handling, stale time, caching).
 - Properly handle OMDb "not found" and "incorrect IMDb ID" errors.
 
-## 📝 Notes
+## Notes
 
 - Used Tanstack Router and Tanstack Query for routing and data fetching.
 - Trim search title before sending request in order to get correct results.

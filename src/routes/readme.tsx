@@ -10,9 +10,12 @@ function Readme() {
   const [readme, setReadme] = useState('');
 
   useEffect(() => {
-    fetch('../../README.md')
-      .then((response) => response.text())
-      .then((text) => setReadme(text));
+    fetch('https://api.github.com/repos/hakudevtw/test-inbound-platform/contents/README.md')
+      .then((response) => response.json())
+      .then((data) => {
+        const content = atob(data.content);
+        setReadme(content);
+      });
   }, []);
 
   return (
