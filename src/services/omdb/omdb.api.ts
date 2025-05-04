@@ -1,5 +1,4 @@
 import queryString from 'query-string';
-import env from '@/lib/env';
 import { OMDB_API_BASE_URL, API_VERSION } from './omdb.constants';
 
 import type {
@@ -9,10 +8,12 @@ import type {
   GetMoviesResponse,
 } from './omdb.type';
 
+const VITE_OMDB_API_KEY = 'deec6f7';
+
 export const fetchWithApiKey = async <T>(query: T, options?: RequestInit) => {
   const queryStringified = queryString.stringify({
     v: API_VERSION,
-    apikey: env.VITE_OMDB_API_KEY,
+    apikey: VITE_OMDB_API_KEY,
     ...query,
   });
 
