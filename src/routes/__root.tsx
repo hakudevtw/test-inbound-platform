@@ -26,9 +26,7 @@ function Root() {
   return (
     <>
       <Layout style={{ height: '100vh' }}>
-        <Layout.Header
-          style={{ display: 'flex', alignItems: 'center', padding: 0, marginBottom: 16 }}
-        >
+        <Layout.Header style={{ display: 'flex', alignItems: 'center', padding: 0 }}>
           <Flex className="container" gap={16} style={{ flex: 1 }}>
             {MENU_ITEMS.map((item) => (
               <Link
@@ -45,7 +43,7 @@ function Root() {
             ))}
           </Flex>
         </Layout.Header>
-        <Layout.Content className="container">
+        <Layout.Content className="container" style={{ padding: 16 }}>
           <Outlet />
         </Layout.Content>
       </Layout>
