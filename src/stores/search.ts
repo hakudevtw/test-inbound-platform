@@ -1,10 +1,14 @@
 import { create } from 'zustand';
 import createSelectors from '@/lib/selectors';
+import { updateSearchParams } from '@/lib/utils';
 import type { GetMoviesQuery } from '@/services/omdb';
 
-const DEFAULT_SEARCH: GetMoviesQuery = {
-  s: '',
-  page: 1,
+export const getDefaultSearch = (): GetMoviesQuery => {
+  const searchParams = new URLSearchParams(window.location.search);
+  const s = searchParams.get('s') || '';
+  const page = parseInt(searchParams.get('page') || '1', 10);
+
+  return { s, page };
 };
 
 interface StoreState {
@@ -13,8 +17,9 @@ interface StoreState {
 }
 
 const useSearchStoreBase = create<StoreState>((set) => ({
-  search: DEFAULT_SEARCH,
+  search: getDefaultSearch(),
   updateSearch: (criteria) => {
+    updateSearchParams(criteria);
     set((state) => ({ search: { ...state.search, ...criteria } }));
   },
 }));

@@ -4,8 +4,9 @@ import { useDebouncedCallback } from 'use-debounce';
 import { useSearchStore } from '@/stores/search';
 
 function Search() {
+  const { s } = useSearchStore.use.search();
   const updateSearch = useSearchStore.use.updateSearch();
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(() => s);
 
   const handleSearch = useDebouncedCallback(async (value: string) => {
     updateSearch({ s: value, page: 1 });
