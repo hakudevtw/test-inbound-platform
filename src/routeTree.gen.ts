@@ -11,11 +11,18 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as ReadmeImport } from './routes/readme'
 import { Route as FavoritesImport } from './routes/favorites'
 import { Route as IndexImport } from './routes/index'
 import { Route as MoviesMovieIdImport } from './routes/movies.$movieId'
 
 // Create/Update Routes
+
+const ReadmeRoute = ReadmeImport.update({
+  id: '/readme',
+  path: '/readme',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const FavoritesRoute = FavoritesImport.update({
   id: '/favorites',
@@ -53,6 +60,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FavoritesImport
       parentRoute: typeof rootRoute
     }
+    '/readme': {
+      id: '/readme'
+      path: '/readme'
+      fullPath: '/readme'
+      preLoaderRoute: typeof ReadmeImport
+      parentRoute: typeof rootRoute
+    }
     '/movies/$movieId': {
       id: '/movies/$movieId'
       path: '/movies/$movieId'
@@ -68,12 +82,14 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/favorites': typeof FavoritesRoute
+  '/readme': typeof ReadmeRoute
   '/movies/$movieId': typeof MoviesMovieIdRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/favorites': typeof FavoritesRoute
+  '/readme': typeof ReadmeRoute
   '/movies/$movieId': typeof MoviesMovieIdRoute
 }
 
@@ -81,27 +97,30 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/favorites': typeof FavoritesRoute
+  '/readme': typeof ReadmeRoute
   '/movies/$movieId': typeof MoviesMovieIdRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/favorites' | '/movies/$movieId'
+  fullPaths: '/' | '/favorites' | '/readme' | '/movies/$movieId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/favorites' | '/movies/$movieId'
-  id: '__root__' | '/' | '/favorites' | '/movies/$movieId'
+  to: '/' | '/favorites' | '/readme' | '/movies/$movieId'
+  id: '__root__' | '/' | '/favorites' | '/readme' | '/movies/$movieId'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FavoritesRoute: typeof FavoritesRoute
+  ReadmeRoute: typeof ReadmeRoute
   MoviesMovieIdRoute: typeof MoviesMovieIdRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FavoritesRoute: FavoritesRoute,
+  ReadmeRoute: ReadmeRoute,
   MoviesMovieIdRoute: MoviesMovieIdRoute,
 }
 
@@ -117,6 +136,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/favorites",
+        "/readme",
         "/movies/$movieId"
       ]
     },
@@ -125,6 +145,9 @@ export const routeTree = rootRoute
     },
     "/favorites": {
       "filePath": "favorites.tsx"
+    },
+    "/readme": {
+      "filePath": "readme.tsx"
     },
     "/movies/$movieId": {
       "filePath": "movies.$movieId.tsx"
