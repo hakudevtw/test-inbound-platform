@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import { Card, Tag } from 'antd';
+import ImageWithFallback from './image-with-fallback';
 import type { MovieBase } from '@/services/omdb';
 
 function MovieCard({ Title, Year, imdbID, Type, Poster }: MovieBase) {
@@ -8,11 +9,7 @@ function MovieCard({ Title, Year, imdbID, Type, Poster }: MovieBase) {
       <Card
         hoverable
         cover={
-          <img
-            alt={Title}
-            src={Poster !== 'N/A' ? Poster : '/fallback.jpg'}
-            style={{ height: 250, objectFit: 'cover' }}
-          />
+          <ImageWithFallback alt={Title} src={Poster} style={{ height: 250, objectFit: 'cover' }} />
         }
       >
         <Card.Meta
