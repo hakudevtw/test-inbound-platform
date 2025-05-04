@@ -1,7 +1,7 @@
-import { Pagination } from 'antd';
+import { Pagination, Flex, Empty, Typography, Row, Col } from 'antd';
 import { useQueryMovies } from '@/hooks/useQueryMovies';
 import { useSearchStore } from '@/stores/search';
-import { Empty } from 'antd';
+import MovieCard from '@/components/movie-card';
 
 const emptyStyle = {
   paddingTop: 80,
@@ -25,21 +25,27 @@ function SearchResult() {
   }
 
   return (
-    <div>
-      <h2>Search Result</h2>
-      {data.Search.map((movie) => (
-        <div key={movie.imdbID}>
-          <h3>{movie.Title}</h3>
-          <p>Year: {movie.Year}</p>
-        </div>
-      ))}
+    <Flex vertical style={{ flex: 1, gap: 24 }}>
+      <Typography.Title level={2} style={{ textAlign: 'center' }}>
+        Search Result
+      </Typography.Title>
+      <Row gutter={[16, 16]} justify="start">
+        {data.Search.map((movie) => (
+          <Col key={movie.imdbID} xs={24} sm={12} md={8} lg={6}>
+            <MovieCard key={movie.imdbID} {...movie} />
+          </Col>
+        ))}
+      </Row>
+
       <Pagination
         defaultCurrent={1}
         current={page}
         total={Number(data.totalResults)}
         onChange={(page) => updateSearch({ page })}
+        align="center"
+        style={{ marginTop: 'auto' }}
       />
-    </div>
+    </Flex>
   );
 }
 

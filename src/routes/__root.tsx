@@ -25,7 +25,7 @@ export const Route = createRootRoute({
 function Root() {
   return (
     <>
-      <Layout style={{ height: '100vh' }}>
+      <Layout style={{ minHeight: '100vh' }}>
         <Layout.Header style={{ display: 'flex', alignItems: 'center', padding: 0 }}>
           <Flex className="container" gap={16} style={{ flex: 1 }}>
             {MENU_ITEMS.map((item) => (
