@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { Card, Tag } from 'antd';
 import ImageWithFallback from './image-with-fallback';
+import FavoriteButton from './favorite-button';
 import type { MovieBase } from '@/services/omdb';
 
 function MovieCard({ Title, Year, imdbID, Type, Poster }: MovieBase) {
@@ -9,7 +10,22 @@ function MovieCard({ Title, Year, imdbID, Type, Poster }: MovieBase) {
       <Card
         hoverable
         cover={
-          <ImageWithFallback alt={Title} src={Poster} style={{ height: 250, objectFit: 'cover' }} />
+          <div style={{ position: 'relative' }}>
+            <ImageWithFallback
+              alt={Title}
+              src={Poster}
+              style={{ height: 250, width: '100%', objectFit: 'cover' }}
+            />
+            <FavoriteButton
+              movieId={imdbID}
+              style={{
+                position: 'absolute',
+                top: 8,
+                right: 8,
+                zIndex: 1,
+              }}
+            />
+          </div>
         }
       >
         <Card.Meta

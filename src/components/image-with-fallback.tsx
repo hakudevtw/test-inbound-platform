@@ -12,7 +12,7 @@ function ImageWithFallback(props: Props) {
   const { fallbackSrc = DEFAULT_FALLBACK_SRC, ...rest } = props;
 
   return (
-    <Image
+    <img
       {...rest}
       onError={(e) => {
         const target = e.target as HTMLImageElement;
