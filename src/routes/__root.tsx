@@ -1,20 +1,55 @@
-import { createRootRoute, Link, Outlet } from '@tanstack/react-router';
+import { createRootRoute, Outlet } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
+import { Link } from '@tanstack/react-router';
+import { Layout, Flex } from 'antd';
+
+const MENU_ITEMS = [
+  {
+    key: 'home',
+    path: '/',
+    label: 'MOVIES',
+    icon: '🎬',
+  },
+  {
+    key: 'readme',
+    path: '/readme',
+    label: 'README',
+    icon: '📖',
+  },
+];
 
 export const Route = createRootRoute({
-  component: () => (
+  component: Root,
+});
+
+function Root() {
+  return (
     <>
-      <div className="p-2 flex gap-2">
-        <Link to="/" className="[&.active]:font-bold">
-          Home
-        </Link>{' '}
-        <Link to="/about" className="[&.active]:font-bold">
-          About
-        </Link>
-      </div>
-      <hr />
-      <Outlet />
+      <Layout style={{ height: '100vh' }}>
+        <Layout.Header
+          style={{ display: 'flex', alignItems: 'center', padding: 0, marginBottom: 16 }}
+        >
+          <Flex className="container" gap={16} style={{ flex: 1 }}>
+            {MENU_ITEMS.map((item) => (
+              <Link
+                key={item.key}
+                to={item.path}
+                style={{ display: 'flex', gap: 8, padding: '0 16px' }}
+                activeProps={{
+                  style: { color: 'white', fontWeight: 'bold' },
+                }}
+              >
+                <span>{item.icon}</span>
+                {item.label}
+              </Link>
+            ))}
+          </Flex>
+        </Layout.Header>
+        <Layout.Content className="container">
+          <Outlet />
+        </Layout.Content>
+      </Layout>
       <TanStackRouterDevtools />
     </>
-  ),
-});
+  );
+}
