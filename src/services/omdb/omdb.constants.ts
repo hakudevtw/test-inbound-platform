@@ -1,4 +1,4 @@
-export const OMDB_API_BASE_URL = 'http://www.omdbapi.com/';
+export const OMDB_API_BASE_URL = 'https://www.omdbapi.com/';
 
 export const API_VERSION = 'v1';
 
