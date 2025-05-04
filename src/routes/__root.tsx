@@ -1,7 +1,9 @@
-import { createRootRoute, Outlet } from '@tanstack/react-router';
+import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import { Link } from '@tanstack/react-router';
 import { Layout, Flex } from 'antd';
+
+import type { QueryClient } from '@tanstack/react-query';
 
 const MENU_ITEMS = [
   {
@@ -18,7 +20,7 @@ const MENU_ITEMS = [
   },
 ];
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   component: Root,
 });
 

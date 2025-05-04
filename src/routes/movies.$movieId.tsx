@@ -1,6 +1,6 @@
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute, notFound } from '@tanstack/react-router';
-import { Row, Col, Typography, Descriptions } from 'antd';
+import { Row, Col, Typography, Descriptions, Empty } from 'antd';
 import { getMovieById } from '@/services/omdb';
 import { isAvailable } from '@/lib/utils';
 import ImageWithFallback from '@/components/image-with-fallback';
@@ -13,15 +13,15 @@ const movieQueryOptions = (movieId: string) =>
       if (result.Response === 'False') throw notFound();
       return result;
     },
+    staleTime: Infinity,
   });
 
 export const Route = createFileRoute('/movies/$movieId')({
-  // @ts-expect-error declared in main.tsx
   loader: ({ context: { queryClient }, params: { movieId } }) => {
     return queryClient.ensureQueryData(movieQueryOptions(movieId));
   },
   notFoundComponent: () => {
-    return <p>Movie not found</p>;
+    return <Empty description="Movie not found" image={Empty.PRESENTED_IMAGE_SIMPLE} />;
   },
   component: MovieDetail,
 });
