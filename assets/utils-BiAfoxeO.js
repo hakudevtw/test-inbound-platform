@@ -1,0 +1,1 @@
+import{az as s}from"./index-Q7M_5bHA.js";const o=r=>{const e=new URLSearchParams(window.location.search);Object.entries(r).forEach(([t,a])=>{a===void 0?e.delete(t):e.set(t,String(a))});const n=`${window.location.pathname}?${e.toString()}`;window.history.replaceState({},"",n)},c=r=>!(r===void 0||r===null||r===""||r===s);export{c as i,o as u};

@@ -1,0 +1,1 @@
+import{j as t}from"./index-Q7M_5bHA.js";import{E as o}from"./index-5j6OG3iF.js";import"./useLocale-UNEe-K9F.js";const r=()=>t.jsx(o,{description:"Movie not found",image:o.PRESENTED_IMAGE_SIMPLE});export{r as notFoundComponent};
