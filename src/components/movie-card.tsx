@@ -5,7 +5,7 @@ import type { MovieBase } from '@/services/omdb';
 
 function MovieCard({ Title, Year, imdbID, Type, Poster }: MovieBase) {
   return (
-    <Link to={`/movies/${imdbID}`} style={{ textDecoration: 'none' }}>
+    <Link to={`/movies/$movieId`} params={{ movieId: imdbID }} style={{ textDecoration: 'none' }}>
       <Card
         hoverable
         cover={
