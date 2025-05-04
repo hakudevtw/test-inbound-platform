@@ -1,10 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/movies/$movieId')({
-  component: RouteComponent,
+  component: MovieDetail,
 });
 
-function RouteComponent() {
+function MovieDetail() {
   const { movieId } = Route.useParams();
   return <div>Hello `/movies/${movieId}`!</div>;
 }

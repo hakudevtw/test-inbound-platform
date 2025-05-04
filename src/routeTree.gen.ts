@@ -12,7 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
-import { Route as MoviesMovieIdImport } from './routes/movies/$movieId'
+import { Route as MoviesMovieIdImport } from './routes/movies.$movieId'
 
 // Create/Update Routes
 
@@ -104,7 +104,7 @@ export const routeTree = rootRoute
       "filePath": "index.tsx"
     },
     "/movies/$movieId": {
-      "filePath": "movies/$movieId.tsx"
+      "filePath": "movies.$movieId.tsx"
     }
   }
 }
