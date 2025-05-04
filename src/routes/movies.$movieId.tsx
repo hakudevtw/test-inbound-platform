@@ -64,20 +64,32 @@ function MovieDetail() {
               label: { width: '150px' },
             }}
           >
-            <Descriptions.Item label="Rated">{movie.Rated}</Descriptions.Item>
-            <Descriptions.Item label="Released">{movie.Released}</Descriptions.Item>
-            <Descriptions.Item label="Runtime">{movie.Runtime}</Descriptions.Item>
+            <Descriptions.Item label="Rated">
+              {isAvailable(movie.Rated) ? movie.Rated : NOT_AVAILABLE_TEXT}
+            </Descriptions.Item>
+            <Descriptions.Item label="Released">
+              {isAvailable(movie.Released) ? movie.Released : NOT_AVAILABLE_TEXT}
+            </Descriptions.Item>
+            <Descriptions.Item label="Runtime">
+              {isAvailable(movie.Runtime) ? movie.Runtime : NOT_AVAILABLE_TEXT}
+            </Descriptions.Item>
             <Descriptions.Item label="Director">
               {isAvailable(movie.Director) ? movie.Director : NOT_AVAILABLE_TEXT}
             </Descriptions.Item>
             <Descriptions.Item label="Writer">
               {isAvailable(movie.Writer) ? movie.Writer : NOT_AVAILABLE_TEXT}
             </Descriptions.Item>
-            <Descriptions.Item label="Actors">{movie.Actors}</Descriptions.Item>
+            <Descriptions.Item label="Actors">
+              {isAvailable(movie.Actors) ? movie.Actors : NOT_AVAILABLE_TEXT}
+            </Descriptions.Item>
             <Descriptions.Item label="Language">{movie.Language}</Descriptions.Item>
             <Descriptions.Item label="Country">{movie.Country}</Descriptions.Item>
-            <Descriptions.Item label="Awards">{movie.Awards}</Descriptions.Item>
-            <Descriptions.Item label="imdb Rating">{movie.imdbRating}</Descriptions.Item>
+            <Descriptions.Item label="Awards">
+              {isAvailable(movie.Awards) ? movie.Awards : NOT_AVAILABLE_TEXT}
+            </Descriptions.Item>
+            <Descriptions.Item label="imdb Rating">
+              {isAvailable(movie.imdbRating) ? movie.imdbRating : NOT_AVAILABLE_TEXT}
+            </Descriptions.Item>
             <Descriptions.Item label="Metascore">
               {isAvailable(movie.Metascore) ? movie.Metascore : NOT_AVAILABLE_TEXT}
             </Descriptions.Item>
