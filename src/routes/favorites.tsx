@@ -3,6 +3,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useQueryFavorites } from '@/hooks/useQueryFavorites';
 import { Pagination, Flex, Empty, Typography, Row, Col } from 'antd';
 import MovieCard from '@/components/movie-card';
+import PageLoading from '@/components/page-loading';
 import { useFavoriteStore } from '@/stores/favorite';
 
 export const Route = createFileRoute('/favorites')({
@@ -11,8 +12,10 @@ export const Route = createFileRoute('/favorites')({
 
 function Favorites() {
   const favorites = useFavoriteStore.use.favorites();
-  const { data: movies } = useQueryFavorites();
+  const { data: movies, isLoading } = useQueryFavorites();
   const [page, setPage] = useState(1);
+
+  if (isLoading) return <PageLoading />;
 
   if (favorites.length === 0) {
     return <Empty description="No favorites..." style={{ paddingTop: 80 }} />;

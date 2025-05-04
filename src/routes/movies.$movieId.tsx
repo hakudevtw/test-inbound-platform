@@ -5,6 +5,7 @@ import { getMovieById } from '@/services/omdb';
 import { isAvailable } from '@/lib/utils';
 import ImageWithFallback from '@/components/image-with-fallback';
 import FavoriteButton from '@/components/favorite-button';
+import PageLoading from '@/components/page-loading';
 
 const movieQueryOptions = (movieId: string) =>
   queryOptions({
@@ -31,7 +32,9 @@ const NOT_AVAILABLE_TEXT = '-';
 
 function MovieDetail() {
   const { movieId } = Route.useParams();
-  const { data: movie } = useSuspenseQuery(movieQueryOptions(movieId));
+  const { data: movie, isLoading } = useSuspenseQuery(movieQueryOptions(movieId));
+
+  if (isLoading) return <PageLoading />;
 
   return (
     <div style={{ padding: '24px', maxWidth: 1200, margin: '0 auto' }}>
