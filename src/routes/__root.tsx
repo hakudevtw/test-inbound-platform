@@ -43,7 +43,7 @@ function Root() {
             ))}
           </Flex>
         </Layout.Header>
-        <Layout.Content className="container" style={{ padding: 16 }}>
+        <Layout.Content className="container" style={{ padding: 16, paddingBottom: 32 }}>
           <Outlet />
         </Layout.Content>
       </Layout>
