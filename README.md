@@ -2,6 +2,8 @@
 
 A movie-based application that consumes the [OMDb API](https://www.omdbapi.com/).
 
+> Preview link: https://hakudevtw.github.io/test-inbound-platform/
+
 ## Requirements
 
 - Set up a React project using **Vite** with **TypeScript**.
